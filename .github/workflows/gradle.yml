@@ -26,7 +26,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        architecture: x64
 
     - name: make application.yml
       run: |
@@ -44,7 +43,7 @@ jobs:
       shell: bash
 
     - name: Build with Gradle
-			run: |
+      run: |
           chmod +x ./gradlew
           ./gradlew clean build -x test
 
