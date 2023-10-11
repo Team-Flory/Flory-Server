@@ -39,6 +39,7 @@ jobs:
 
         # Secrets에 저장한 값을 application.yml 파일에 쓰기
         echo "${{ secrets.YML }}" >> ./application.yml
+        cd /
 
       shell: bash
 
@@ -63,7 +64,6 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: |
-          cd /
           sudo docker rm -f $(sudo docker ps -qa)
           sudo docker pull ${{ secrets.DOCKER_REPO }}
           docker-compose up -d
