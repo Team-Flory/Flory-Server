@@ -63,7 +63,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: |
-          sudo docker rm -f $(docker ps -qa)
+          sudo docker rm -f $(sudo docker ps -qa)
           sudo docker pull ${{ secrets.DOCKER_REPO }}
           docker-compose up -d
           docker image prune -f
