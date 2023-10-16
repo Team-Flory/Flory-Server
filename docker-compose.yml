@@ -1,7 +1,7 @@
 version: "3" # 버전 지정
 
 services: # 컨테이너 설정
-  backend:
+  web:
     container_name: flory-backend
     image: kimjunseok/flory
     expose:
