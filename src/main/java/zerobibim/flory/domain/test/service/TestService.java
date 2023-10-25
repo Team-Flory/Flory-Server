@@ -2,8 +2,8 @@ package zerobibim.flory.domain.test.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import zerobibim.flory.domain.test.exception.TestHandler;
 import zerobibim.flory.global.common.ApiPayload.code.status.ErrorStatus;
-import zerobibim.flory.global.exception.handler.TestHandler;
 
 @Service
 @RequiredArgsConstructor

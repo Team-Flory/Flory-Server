@@ -1,4 +1,4 @@
-package zerobibim.flory.global.exception.handler;
+package zerobibim.flory.domain.test.exception;
 
 import zerobibim.flory.global.common.ApiPayload.code.BaseErrorCode;
 import zerobibim.flory.global.exception.GeneralException;
