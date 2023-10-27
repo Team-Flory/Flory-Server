@@ -40,5 +40,5 @@ public class Member extends BaseTime {
         this.phoneNumber = phoneNumber;
         this.nickname = nickname;
     }
-
 }
+
