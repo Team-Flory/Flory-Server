@@ -23,12 +23,14 @@ public class MemberService implements EntityLoader<Member, Long> {
     public MemberIdResponse createMember(MemberSignUpRequest request) {
         // TODO Validation 추가하기
 
-        // TODO 비밀번호 암호화
+        // TODO 이메일, 닉네임 중복 여부
 
+        // TODO 비밀번호 암호화
+        
         Member newMember =  memberRepository.save(
                 memberMapper.toEntity(
-                        request.getName(), request.getEmail(), request.getPassword(),
-                        request.getPhoneNumber(), request.getWalletAddress(), request.getWalletPassword()));
+                        request.getName(), request.getEmail(), request.getPassword(), request.getPhoneNumber(),
+                        request.getNickname(), request.getWalletAddress(), request.getWalletPassword()));
 
         return new MemberIdResponse(newMember.getId());
     }

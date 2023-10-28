@@ -26,17 +26,20 @@ public class Member extends BaseTime {
     private String password;
 
     private String phoneNumber;
+    private String nickname;
 
     private String walletAddress;
     private String walletPassword;
 
 
     @Builder
-    public Member(String name, String email, String password, String phoneNumber, String walletAddress, String walletPassword) {
+    public Member(String name, String email, String password, String phoneNumber,
+                  String nickname, String walletAddress, String walletPassword) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.nickname = nickname;
         this.walletAddress = walletAddress;
         this.walletPassword = walletPassword;
     }
