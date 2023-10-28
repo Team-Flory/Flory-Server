@@ -1,10 +1,11 @@
-package zerobibim.flory.domain.test.exception;
+package zerobibim.flory.global.common;
 
 import zerobibim.flory.global.common.ApiPayload.code.BaseErrorCode;
 import zerobibim.flory.global.exception.GeneralException;
 
-public class TestHandler extends GeneralException {
-    public TestHandler(BaseErrorCode code) {
+public class ExceptionHandler extends GeneralException {
+
+    public ExceptionHandler(BaseErrorCode code) {
         super(code);
     }
 }
