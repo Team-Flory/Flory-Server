@@ -25,6 +25,8 @@ public enum ErrorStatus implements BaseErrorCode {
     // 기념일 관련 응답
 
     // 구매 관련 응답
+    PURCHASE_NOT_FOUND(HttpStatus.BAD_REQUEST, "PURCHASE4001","존재하지 않는 구매 정보입니다."),
+    RECEIVER_NOT_FOUND(HttpStatus.BAD_REQUEST, "PURCHASE4002", "존재하지 않는 닉네임입니다."),
 
     // 테스트 관련 응답
     TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST4001", "테스트를 위한 에러 코드"),

@@ -3,6 +3,7 @@ package zerobibim.flory.domain.purchase.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
+import org.springframework.cglib.core.Local;
 import zerobibim.flory.domain.flower.entity.Flower;
 import zerobibim.flory.domain.member.entity.Member;
 import zerobibim.flory.global.common.BaseTime;
@@ -28,10 +29,7 @@ public class Purchase extends BaseTime {
     @JoinColumn
     private Member receiver;
 
-    @Column(nullable = false)
     private String receiverName;
-
-    @Column(nullable = false)
     private String receiverAddress;
 
     private LocalDate receiveDate;
@@ -40,10 +38,31 @@ public class Purchase extends BaseTime {
     @JoinColumn
     private Flower flower;
 
-    private Long flowerCnt;
+    private int flowerCnt;
 
-    private Long deliveryTip;
+    private String nftComment;
 
-    private String nftWord;
+    private int deliveryTip;
 
+    private int totalPrice;
+
+    private Boolean isDelivered;
+
+    @Builder
+    public Purchase(Member sender, Member receiver, LocalDate receiveDate,
+                    Flower flower, String receiverName, String receiverAddress,
+                    int flowerCnt, String nftComment, int deliveryTip, int totalPrice) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.receiveDate = receiveDate;
+        this.receiverName = receiverName;
+        this.receiverAddress = receiverAddress;
+        this.flower = flower;
+        this.flowerCnt = flowerCnt;
+        this.nftComment = nftComment;
+        this.deliveryTip = deliveryTip;
+        this.totalPrice = totalPrice;
+        this.isDelivered = Boolean.FALSE;
+
+    }
 }
