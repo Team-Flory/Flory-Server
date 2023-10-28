@@ -16,11 +16,23 @@ public class Flower extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
 
     private String description;
 
     @Column(nullable = false)
     private Long price;
+
+    @Builder
+    public Flower(String name, String description, Long price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public void update(String description, Long price) {
+        this.description = description;
+        this.price = price;
+    }
 }

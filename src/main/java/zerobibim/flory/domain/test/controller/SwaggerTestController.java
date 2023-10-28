@@ -1,5 +1,6 @@
 package zerobibim.flory.domain.test.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,17 @@ import zerobibim.flory.global.common.ApiPayload.ApiResponse;
 public class SwaggerTestController {
 
     private final TestService testService;
+    @Hidden
     @PostMapping
     public void postTestController(@RequestBody TestRequest request) { }
 
+    @Hidden
     @GetMapping
     public ApiResponse<TestResponse.TestDTO> testAPI() {
         return ApiResponse.onSuccess(TestMapper.toTestResponse());
     }
 
+    @Hidden
     @GetMapping("/exception")
     public ApiResponse<TestResponse.TestExceptionDTO> exceptionAPI(@RequestParam Integer flag) {
         testService.CheckFlag(flag);
