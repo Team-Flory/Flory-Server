@@ -1,5 +1,6 @@
 package zerobibim.flory.domain.member.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ public class MemberController {
      * @return 생성된 멤버의 id가 반환됩니다.
      */
     @PostMapping
+    @Operation(summary = "회원가입 API")
     public ApiResponse<MemberIdResponse> singUpMember(@RequestBody MemberSignUpRequest request) {
         return ApiResponse.onSuccess(memberService.createMember(request));
     }
@@ -35,6 +37,7 @@ public class MemberController {
      * @return 기존의 멤버의 id가 반환됩니다.
      */
     @PostMapping("/login")
+    @Operation(summary = "로그인 API")
     public ApiResponse<MemberIdResponse> signInMember(@RequestBody MemberSignInRequest request) {
         return ApiResponse.onSuccess(memberService.checkMember(request));
     }

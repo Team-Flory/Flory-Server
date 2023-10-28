@@ -1,5 +1,6 @@
 package zerobibim.flory.domain.purchase.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class PurchaseController {
      * @return 생성된 구매 정보의 id가 반환된니다.
      */
     @PostMapping
+    @Operation(summary = "구매하기 API")
     public ApiResponse<PurchaseIdResponse> createPurchase(@RequestBody PurchaseCreateRequest request) {
         return ApiResponse.onSuccess(purchaseService.createPurchase(request));
     }

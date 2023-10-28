@@ -1,5 +1,6 @@
 package zerobibim.flory.domain.flower.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class FlowerController {
      * @return 생성된 꽃의 id가 반환됩니다.
      */
     @PostMapping
+    @Operation(summary = "꽃 생성 API")
     public ApiResponse<FlowerIdResponse> createFlower(@RequestBody FlowerCreateReqeust reqeust) {
         return ApiResponse.onSuccess(flowerService.createFlower(reqeust));
     }
@@ -35,6 +37,7 @@ public class FlowerController {
      * @return 업데이트된 꽃의 id가 반환됩니다.
      */
     @PostMapping("/update")
+    @Operation(summary = "꽃 수정 API")
     public ApiResponse<FlowerIdResponse> updateFlower(@RequestBody FlowerUpdateRequest request) {
         return ApiResponse.onSuccess(flowerService.updateFlower(request));
     }
@@ -44,6 +47,7 @@ public class FlowerController {
      * @return 꽃 전체 정보를 리스트로 반환합니다.
      */
     @GetMapping
+    @Operation(summary = "꽃 전체 조회 API")
     public ApiResponse<List<FlowerDetailResponse>> findAllFlower() {
         return ApiResponse.onSuccess(flowerService.findAllFlower());
     }
@@ -53,6 +57,7 @@ public class FlowerController {
      * @return 해당 꽃 상세 정보를 반환합니다.
      */
     @GetMapping("/detail")
+    @Operation(summary = "꽃 상세 조회 API")
     public ApiResponse<FlowerDetailResponse> findFlowerDetail(@RequestParam Long flowerId) {
         return ApiResponse.onSuccess(flowerService.findFlowerDetail(flowerId));
     }
