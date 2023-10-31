@@ -27,7 +27,7 @@ public class PurchaseService implements EntityLoader<Purchase, Long> {
 
     public PurchaseIdResponse createPurchase(PurchaseCreateRequest request) {
         Member sender = memberService.loadEntity(request.getMemberId());
-        Member receiver = memberService.findReceiver(request.getReceiverNickname());
+        Member receiver = memberService.findMemberByNickname(request.getReceiverNickname());
         Flower flower = flowerService.loadEntity(request.getFlowerId());
 
         Purchase newPurchase = purchaseRepository.save(

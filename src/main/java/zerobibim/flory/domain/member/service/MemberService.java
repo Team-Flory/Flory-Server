@@ -23,7 +23,11 @@ public class MemberService implements EntityLoader<Member, Long> {
     public MemberIdResponse createMember(MemberSignUpRequest request) {
         // TODO Validation 추가하기
 
-        // TODO 이메일, 닉네임 중복 여부
+        // 이메일, 닉네임 중복 여부 체크
+        Optional<Member> member = memberRepository.findMemberByEmail(request.getEmail());
+        if(member.isPresent()) throw new ExceptionHandler(ErrorStatus.MEMBER_EXISTED);
+        member = memberRepository.findMemberByNickname(request.getNickname());
+        if(member.isPresent()) throw new ExceptionHandler(ErrorStatus.NICKNAME_DUPLICATED);
 
         // TODO 비밀번호 암호화
 
@@ -46,7 +50,7 @@ public class MemberService implements EntityLoader<Member, Long> {
         return new MemberIdResponse(member.get().getId());
     }
 
-    public Member findReceiver(String nickname) {
+    public Member findMemberByNickname(String nickname) {
         Optional<Member> member = memberRepository.findMemberByNickname(nickname);
         // 해당 닉네임 존재하지 않을 경우
         if(member.isEmpty()) throw new ExceptionHandler(ErrorStatus.RECEIVER_NOT_FOUND);
