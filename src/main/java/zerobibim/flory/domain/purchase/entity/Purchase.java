@@ -3,7 +3,6 @@ package zerobibim.flory.domain.purchase.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
-import org.springframework.cglib.core.Local;
 import zerobibim.flory.domain.flower.entity.Flower;
 import zerobibim.flory.domain.member.entity.Member;
 import zerobibim.flory.global.common.BaseTime;

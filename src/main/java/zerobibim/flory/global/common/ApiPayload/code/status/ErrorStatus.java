@@ -17,8 +17,10 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 멤버 관련 응답
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "존재하지 않는 사용자입니다."),
-    MEMBER_EXISTED(HttpStatus.BAD_REQUEST, "MEMBER4002", "이미 존재하는 사용자입니다."),
+    MEMBER_EXISTED(HttpStatus.BAD_REQUEST, "MEMBER4002", "이미 사용중인 계정입니다."),
     PASSWORD_NOT_MATCH(HttpStatus.BAD_REQUEST, "MEMBER4003","비밀번호가 일치하지 않습니다."),
+    NICKNAME_DUPLICATED(HttpStatus.BAD_REQUEST, "MEMBER4004", "이미 사용중인 닉네임입니다."),
+
     // 꽃 관련 응답
     FLOWER_NOT_FOUND(HttpStatus.BAD_REQUEST, "FLOWER4001", "존재하지 않는 꽃입니다."),
     FLOWER_EXISTED(HttpStatus.BAD_REQUEST, "FLOWER4002","이미 존재하는 꽃입니다."),
