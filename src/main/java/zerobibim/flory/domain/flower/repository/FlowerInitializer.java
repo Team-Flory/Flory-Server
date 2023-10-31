@@ -1,8 +1,5 @@
 package zerobibim.flory.domain.flower.repository;
 
-import jakarta.annotation.PostConstruct;
-import org.springframework.stereotype.Component;
-import zerobibim.flory.domain.flower.entity.Flower;
 /*
 @Component
 public class FlowerInitializer {
