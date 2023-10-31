@@ -26,14 +26,13 @@ public class PurchaseService implements EntityLoader<Purchase, Long> {
     private final FlowerService flowerService;
 
     public PurchaseIdResponse createPurchase(PurchaseCreateRequest request) {
-        // TODO Validation 추가
-
+        Member sender = memberService.loadEntity(request.getMemberId());
         Member receiver = memberService.findReceiver(request.getReceiverNickname());
         Flower flower = flowerService.loadEntity(request.getFlowerId());
 
         Purchase newPurchase = purchaseRepository.save(
                 purchaseMapper.toEntity(
-                        null, receiver, request.getReceiveDate(), flower, request.getReceiverName(), request.getReceiverAddress(),
+                        sender, receiver, request.getReceiveDate(), flower, request.getReceiverName(), request.getReceiverAddress(),
                         request.getFlowerQuentity(), request.getNftComment(), request.getDeliveryTip(), request.getTotalPrice()
                 ));
 

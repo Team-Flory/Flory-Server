@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class PurchaseCreateRequest {
+    private Long memberId;
     private String receiverName;
     private String receiverAddress;
     private String receiverNickname;
