@@ -40,4 +40,8 @@ public class Flower extends BaseTime {
         this.description = description;
         this.price = price;
     }
+
+    public void updateFlowerImage(Image image) {
+        this.image = image;
+    }
 }

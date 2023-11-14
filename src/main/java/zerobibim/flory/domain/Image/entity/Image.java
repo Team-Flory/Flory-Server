@@ -26,6 +26,7 @@ public class Image extends BaseTime {
     @Builder
     public Image(String url) {
         this.url = url;
+        this.senderId = null;
         this.isNFT = Boolean.FALSE;
     }
 }

@@ -33,6 +33,9 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 테스트 관련 응답
     TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST4001", "테스트를 위한 에러 코드"),
+
+    // 이미지 관련 응답
+    IMAGE_BLANK(HttpStatus.BAD_REQUEST, "IMAGE4001", "이미지 파일이 없습니다."),
     ;
 
 
