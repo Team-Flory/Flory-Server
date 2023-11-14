@@ -14,7 +14,6 @@ public class PurchaseCreateRequest {
     private String receiverNickname;
     private Long flowerId;
     private int flowerQuentity;
-    private String nftComment;
     private LocalDate receiveDate;
     private int deliveryTip;
     private int totalPrice;

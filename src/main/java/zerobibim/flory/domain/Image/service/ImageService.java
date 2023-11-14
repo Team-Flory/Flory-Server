@@ -9,12 +9,15 @@ import zerobibim.flory.domain.Image.entity.Image;
 import zerobibim.flory.domain.Image.mapper.ImageMapper;
 import zerobibim.flory.domain.Image.repository.ImageRepository;
 import zerobibim.flory.global.common.ApiPayload.code.status.ErrorStatus;
+import zerobibim.flory.global.common.EntityLoader;
 import zerobibim.flory.global.common.ExceptionHandler;
 import zerobibim.flory.utils.S3ImageComponent;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
-public class ImageService {
+public class ImageService implements EntityLoader<Image, Long> {
 
     private final ImageMapper imageMapper;
     private final ImageRepository imageRepository;
@@ -34,5 +37,18 @@ public class ImageService {
             throw new ExceptionHandler(ErrorStatus.IMAGE_BLANK);
         }
         return s3ImageComponent.uploadImage("flower-image", flowerImage);
+    }
+
+    @Transactional
+    public void makeNft(Long imageId, Long senderId, Long receiverId) {
+        Image image = loadEntity(imageId);
+        image.updateImage(senderId, receiverId);
+    }
+
+    @Override
+    public Image loadEntity(Long id) {
+        Optional<Image> image = imageRepository.findImageById(id);
+        if(image.isEmpty()) throw new ExceptionHandler(ErrorStatus.IMAGE_NOT_FOUND);
+        return image.get();
     }
 }
