@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import zerobibim.flory.domain.flower.dto.request.FlowerInsertImageRequest;
 import zerobibim.flory.domain.flower.dto.request.FlowerCreateReqeust;
 import zerobibim.flory.domain.flower.dto.request.FlowerUpdateRequest;
 import zerobibim.flory.domain.flower.dto.response.FlowerDetailResponse;
@@ -40,6 +41,17 @@ public class FlowerController {
     @Operation(summary = "꽃 수정 API")
     public ApiResponse<FlowerIdResponse> updateFlower(@RequestBody FlowerUpdateRequest request) {
         return ApiResponse.onSuccess(flowerService.updateFlower(request));
+    }
+
+    /**
+     * 꽃 이미지를 업데이트합니다.
+     * @param request 업데이트 할 꽃과 이미지에 대한 DTO입니다.
+     * @return 업데이트된 꽃의 id가 반환됩니다.
+     */
+    @PostMapping("/image")
+    @Operation(summary = "꽃 이미지 생성 API")
+    public ApiResponse<FlowerIdResponse> insertImage(@RequestBody FlowerInsertImageRequest request) {
+        return ApiResponse.onSuccess(flowerService.insertImage(request));
     }
 
     /**

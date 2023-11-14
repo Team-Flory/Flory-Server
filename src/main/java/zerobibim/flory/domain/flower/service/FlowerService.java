@@ -3,6 +3,9 @@ package zerobibim.flory.domain.flower.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import zerobibim.flory.domain.Image.entity.Image;
+import zerobibim.flory.domain.Image.service.ImageService;
+import zerobibim.flory.domain.flower.dto.request.FlowerInsertImageRequest;
 import zerobibim.flory.domain.flower.dto.request.FlowerCreateReqeust;
 import zerobibim.flory.domain.flower.dto.request.FlowerUpdateRequest;
 import zerobibim.flory.domain.flower.dto.response.FlowerDetailResponse;
@@ -22,6 +25,7 @@ import java.util.Optional;
 public class FlowerService implements EntityLoader<Flower, Long> {
     private final FlowerRepository flowerRepository;
     private final FlowerMapper flowerMapper;
+    private final ImageService imageService;
 
     public FlowerIdResponse createFlower(FlowerCreateReqeust reqeust) {
         // 중복 꽃 여부 확인
@@ -42,6 +46,15 @@ public class FlowerService implements EntityLoader<Flower, Long> {
         Flower flower = loadEntity(request.getFlowerId());
 
         flower.update(request.getDescription(), request.getPrice());
+        return new FlowerIdResponse(flower.getId());
+    }
+
+    @Transactional
+    public FlowerIdResponse insertImage(FlowerInsertImageRequest request) {
+        Flower flower = loadEntity(request.getFlowerId());
+        Image image = imageService.loadEntity(request.getImageId());
+
+        flower.updateFlowerImage(image);
         return new FlowerIdResponse(flower.getId());
     }
 
