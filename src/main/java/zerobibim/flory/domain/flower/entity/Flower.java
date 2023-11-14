@@ -3,6 +3,7 @@ package zerobibim.flory.domain.flower.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
+import zerobibim.flory.domain.Image.entity.Image;
 import zerobibim.flory.global.common.BaseTime;
 
 @Entity
@@ -24,6 +25,10 @@ public class Flower extends BaseTime {
     @Column(nullable = false)
     private Long price;
 
+    @OneToOne
+    @JoinColumn
+    private Image image;
+
     @Builder
     public Flower(String name, String description, Long price) {
         this.name = name;
@@ -34,5 +39,9 @@ public class Flower extends BaseTime {
     public void update(String description, Long price) {
         this.description = description;
         this.price = price;
+    }
+
+    public void updateFlowerImage(Image image) {
+        this.image = image;
     }
 }

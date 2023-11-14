@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class PurchaseMapper {
     public Purchase toEntity(Member sender, Member receiver, LocalDate receiveDate,
                              Flower flower, String receiverName, String receiverAddress,
-                             int flowerCnt, String nftComment, int deliveryTip, int totalPrice) {
+                             int flowerCnt, int deliveryTip, int totalPrice) {
         return Purchase.builder()
                 .sender(sender)
                 .receiver(receiver)
@@ -20,7 +20,6 @@ public class PurchaseMapper {
                 .receiverName(receiverName)
                 .receiverAddress(receiverAddress)
                 .flowerCnt(flowerCnt)
-                .nftComment(nftComment)
                 .deliveryTip(deliveryTip)
                 .totalPrice(totalPrice)
                 .build();

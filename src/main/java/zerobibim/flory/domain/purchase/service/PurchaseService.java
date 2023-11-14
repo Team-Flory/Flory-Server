@@ -2,6 +2,7 @@ package zerobibim.flory.domain.purchase.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import zerobibim.flory.domain.Image.service.ImageService;
 import zerobibim.flory.domain.flower.entity.Flower;
 import zerobibim.flory.domain.flower.service.FlowerService;
 import zerobibim.flory.domain.member.entity.Member;
@@ -24,16 +25,19 @@ public class PurchaseService implements EntityLoader<Purchase, Long> {
     private final PurchaseMapper purchaseMapper;
     private final MemberService memberService;
     private final FlowerService flowerService;
+    private final ImageService imageService;
 
     public PurchaseIdResponse createPurchase(PurchaseCreateRequest request) {
         Member sender = memberService.loadEntity(request.getMemberId());
         Member receiver = memberService.findMemberByNickname(request.getReceiverNickname());
         Flower flower = flowerService.loadEntity(request.getFlowerId());
+        if(flower.getImage() == null) throw new ExceptionHandler(ErrorStatus.NO_IMAGE_IN_FLOWER);
+        imageService.makeNft(flower.getImage().getId(), sender.getId(), receiver.getId());
 
         Purchase newPurchase = purchaseRepository.save(
                 purchaseMapper.toEntity(
                         sender, receiver, request.getReceiveDate(), flower, request.getReceiverName(), request.getReceiverAddress(),
-                        request.getFlowerQuentity(), request.getNftComment(), request.getDeliveryTip(), request.getTotalPrice()
+                        request.getFlowerQuentity(), request.getDeliveryTip(), request.getTotalPrice()
                 ));
 
         return new PurchaseIdResponse(newPurchase.getId());
