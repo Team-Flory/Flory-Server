@@ -32,12 +32,12 @@ public class PurchaseService implements EntityLoader<Purchase, Long> {
         Member receiver = memberService.findMemberByNickname(request.getReceiverNickname());
         Flower flower = flowerService.loadEntity(request.getFlowerId());
         if(flower.getImage() == null) throw new ExceptionHandler(ErrorStatus.NO_IMAGE_IN_FLOWER);
+
         imageService.makeNft(flower.getImage().getId(), sender.getId(), receiver.getId());
 
         Purchase newPurchase = purchaseRepository.save(
                 purchaseMapper.toEntity(
-                        sender, receiver, request.getReceiveDate(), flower, request.getReceiverName(), request.getReceiverAddress(),
-                        request.getFlowerQuentity(), request.getDeliveryTip(), request.getTotalPrice()
+                        sender, receiver, request.getReceiveDate(), flower
                 ));
 
         return new PurchaseIdResponse(newPurchase.getId());
