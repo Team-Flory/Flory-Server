@@ -33,7 +33,7 @@ public class MemberService implements EntityLoader<Member, Long> {
         Member newMember =  memberRepository.save(
                 memberMapper.toEntity(
                         request.getName(), request.getEmail(), request.getPassword(), request.getPhoneNumber(),
-                        request.getNickname(), request.getWalletAddress(), request.getWalletPassword()));
+                        request.getNickname(), request.getWalletAddress()));
 
         return new MemberIdResponse(newMember.getId());
     }

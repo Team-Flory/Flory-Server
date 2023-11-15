@@ -14,5 +14,4 @@ public class MemberSignUpRequest {
     private String phoneNumber;
     private String nickname;
     private String walletAddress;
-    private String walletPassword;
 }
