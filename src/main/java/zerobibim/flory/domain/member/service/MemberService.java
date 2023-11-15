@@ -21,12 +21,11 @@ public class MemberService implements EntityLoader<Member, Long> {
     private final MemberMapper memberMapper;
 
     public MemberIdResponse createMember(MemberSignUpRequest request) {
-        // TODO Validation 추가하기
+        // 닉네임 공백 여부 체크
+        if(request.getNickname().isBlank()) throw new ExceptionHandler(ErrorStatus.NICKNAME_BLANK);
 
-        // 이메일, 닉네임 중복 여부 체크
-        Optional<Member> member = memberRepository.findMemberByEmail(request.getEmail());
-        if(member.isPresent()) throw new ExceptionHandler(ErrorStatus.MEMBER_EXISTED);
-        member = memberRepository.findMemberByNickname(request.getNickname());
+        // 닉네임 중복 여부 체크
+        Optional<Member> member = memberRepository.findMemberByNickname(request.getNickname());
         if(member.isPresent()) throw new ExceptionHandler(ErrorStatus.NICKNAME_DUPLICATED);
 
         // TODO 비밀번호 암호화
@@ -34,7 +33,7 @@ public class MemberService implements EntityLoader<Member, Long> {
         Member newMember =  memberRepository.save(
                 memberMapper.toEntity(
                         request.getName(), request.getEmail(), request.getPassword(), request.getPhoneNumber(),
-                        request.getNickname(), request.getWalletAddress(), request.getWalletPassword()));
+                        request.getNickname(), request.getWalletAddress()));
 
         return new MemberIdResponse(newMember.getId());
     }

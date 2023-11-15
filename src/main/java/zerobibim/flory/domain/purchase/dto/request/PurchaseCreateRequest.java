@@ -9,13 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class PurchaseCreateRequest {
     private Long memberId;
-    private String receiverName;
-    private String receiverAddress;
     private String receiverNickname;
     private Long flowerId;
-    private int flowerQuentity;
-    private String nftComment;
     private LocalDate receiveDate;
-    private int deliveryTip;
-    private int totalPrice;
 }

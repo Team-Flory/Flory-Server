@@ -31,20 +31,16 @@ public class Member extends BaseTime {
 
     @Column(nullable = false)
     private String walletAddress;
-    @Column(nullable = false)
-    private String walletPassword;
-
 
     @Builder
     public Member(String name, String email, String password, String phoneNumber,
-                  String nickname, String walletAddress, String walletPassword) {
+                  String nickname, String walletAddress) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.nickname = nickname;
         this.walletAddress = walletAddress;
-        this.walletPassword = walletPassword;
     }
 }
 

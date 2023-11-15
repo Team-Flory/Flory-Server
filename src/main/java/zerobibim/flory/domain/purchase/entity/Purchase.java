@@ -39,8 +39,6 @@ public class Purchase extends BaseTime {
 
     private int flowerCnt;
 
-    private String nftComment;
-
     private int deliveryTip;
 
     private int totalPrice;
@@ -50,7 +48,7 @@ public class Purchase extends BaseTime {
     @Builder
     public Purchase(Member sender, Member receiver, LocalDate receiveDate,
                     Flower flower, String receiverName, String receiverAddress,
-                    int flowerCnt, String nftComment, int deliveryTip, int totalPrice) {
+                    int flowerCnt, int deliveryTip, int totalPrice) {
         this.sender = sender;
         this.receiver = receiver;
         this.receiveDate = receiveDate;
@@ -58,7 +56,6 @@ public class Purchase extends BaseTime {
         this.receiverAddress = receiverAddress;
         this.flower = flower;
         this.flowerCnt = flowerCnt;
-        this.nftComment = nftComment;
         this.deliveryTip = deliveryTip;
         this.totalPrice = totalPrice;
         this.isDelivered = Boolean.FALSE;

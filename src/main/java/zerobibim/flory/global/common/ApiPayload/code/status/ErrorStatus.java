@@ -20,10 +20,12 @@ public enum ErrorStatus implements BaseErrorCode {
     MEMBER_EXISTED(HttpStatus.BAD_REQUEST, "MEMBER4002", "이미 사용중인 계정입니다."),
     PASSWORD_NOT_MATCH(HttpStatus.BAD_REQUEST, "MEMBER4003","비밀번호가 일치하지 않습니다."),
     NICKNAME_DUPLICATED(HttpStatus.BAD_REQUEST, "MEMBER4004", "이미 사용중인 닉네임입니다."),
+    NICKNAME_BLANK(HttpStatus.BAD_REQUEST, "MEMBER4005", "닉네임은 공백일 수 없습니다."),
 
     // 꽃 관련 응답
     FLOWER_NOT_FOUND(HttpStatus.BAD_REQUEST, "FLOWER4001", "존재하지 않는 꽃입니다."),
     FLOWER_EXISTED(HttpStatus.BAD_REQUEST, "FLOWER4002","이미 존재하는 꽃입니다."),
+    NO_IMAGE_IN_FLOWER(HttpStatus.BAD_REQUEST, "FLOWER4003", "꽃에 이미지가 존재하지 않습니다."),
     // 기념일 관련 응답
 
     // 구매 관련 응답
@@ -32,6 +34,10 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 테스트 관련 응답
     TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST4001", "테스트를 위한 에러 코드"),
+
+    // 이미지 관련 응답
+    IMAGE_BLANK(HttpStatus.BAD_REQUEST, "IMAGE4001", "이미지 파일이 없습니다."),
+    IMAGE_NOT_FOUND(HttpStatus.BAD_REQUEST, "IMAGE4002", "존재하지 않는 이미지입니다."),
     ;
 
 
