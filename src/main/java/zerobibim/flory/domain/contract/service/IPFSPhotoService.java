@@ -3,12 +3,17 @@ package zerobibim.flory.domain.contract.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+@Service
 public class IPFSPhotoService {
+
+  @Value("${pinata.JWT}")
+  private String PINATE_JWT;
   public String insertIpfs(Long memberPhotoId) throws IOException {
-    MemberPhoto memberPhoto = memberPhotoRepository.findById(memberPhotoId).orElseThrow();
 
     OkHttpClient client = new OkHttpClient();
 
