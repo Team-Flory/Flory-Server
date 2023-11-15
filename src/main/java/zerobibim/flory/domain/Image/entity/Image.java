@@ -19,6 +19,8 @@ public class Image extends BaseTime {
     @Column(nullable = false)
     private String url;
 
+    private String ipfsUrl;
+
     private Long senderId;
 
     private Long receiverId;

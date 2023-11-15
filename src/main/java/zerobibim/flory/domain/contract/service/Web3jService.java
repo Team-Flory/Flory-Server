@@ -26,7 +26,7 @@ public class Web3jService {
 
   public TransactionReceipt nftCreate(NFTRequestDto.MemberNFTInfo memberNFTInfo) throws Exception {
 
-    return nft.mint(memberNFTInfo.getWalletAddress(), "ipfs://" +)
+    return nft.create(memberNFTInfo.getWalletAddress(), memberNFTInfo.getIpfsUrl())
         .sendAsync()
         .get();
   }
