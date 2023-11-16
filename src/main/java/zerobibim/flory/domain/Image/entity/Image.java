@@ -21,23 +21,8 @@ public class Image extends BaseTime {
 
     private String ipfsUrl;
 
-    private Long senderId;
-
-    private Long receiverId;
-
-    private Boolean isNFT;
-
     @Builder
     public Image(String url) {
         this.url = url;
-        this.senderId = null;
-        this.receiverId = null;
-        this.isNFT = Boolean.FALSE;
-    }
-
-    public void updateImage(Long senderId, Long receiverId) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.isNFT = Boolean.TRUE;
     }
 }

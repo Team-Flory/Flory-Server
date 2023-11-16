@@ -11,6 +11,7 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
+@Builder
 @Where(clause = "deleted_at is null")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -43,22 +44,14 @@ public class Purchase extends BaseTime {
 
     private int totalPrice;
 
-    private Boolean isDelivered;
+    private Boolean isNft;
 
-    @Builder
-    public Purchase(Member sender, Member receiver, LocalDate receiveDate,
-                    Flower flower, String receiverName, String receiverAddress,
-                    int flowerCnt, int deliveryTip, int totalPrice) {
-        this.sender = sender;
-        this.receiver = receiver;
-        this.receiveDate = receiveDate;
-        this.receiverName = receiverName;
-        this.receiverAddress = receiverAddress;
-        this.flower = flower;
-        this.flowerCnt = flowerCnt;
-        this.deliveryTip = deliveryTip;
-        this.totalPrice = totalPrice;
-        this.isDelivered = Boolean.FALSE;
+    public void setIsNft(LocalDate nowDate) {
+        if(receiveDate.isAfter(nowDate)) {
+            this.isNft = Boolean.FALSE;
+            return;
+        }
+        this.isNft = Boolean.TRUE;
 
     }
 }
