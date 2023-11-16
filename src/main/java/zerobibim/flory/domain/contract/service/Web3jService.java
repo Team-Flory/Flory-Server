@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service("web3jService")
+@Service
 public class Web3jService {
 
   private final NFT nft;
