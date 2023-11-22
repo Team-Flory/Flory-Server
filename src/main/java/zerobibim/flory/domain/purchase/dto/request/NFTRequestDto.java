@@ -1,4 +1,4 @@
-package zerobibim.flory.domain.contract.dto;
+package zerobibim.flory.domain.purchase.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

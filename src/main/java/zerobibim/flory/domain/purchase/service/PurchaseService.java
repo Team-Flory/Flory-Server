@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import zerobibim.flory.domain.contract.dto.NFTRequestDto;
-//import zerobibim.flory.domain.contract.service.Web3jService;
+import zerobibim.flory.domain.purchase.dto.request.NFTRequestDto;
 import zerobibim.flory.domain.flower.entity.Flower;
 import zerobibim.flory.domain.flower.service.FlowerService;
 import zerobibim.flory.domain.member.entity.Member;
@@ -31,7 +30,7 @@ public class PurchaseService implements EntityLoader<Purchase, Long> {
     private final PurchaseMapper purchaseMapper;
     private final MemberService memberService;
     private final FlowerService flowerService;
-//    private final Web3jService web3jService;
+    private final Web3jService web3jService;
 
     @Transactional
     public PurchaseIdResponse createPurchase(PurchaseCreateRequest request) {
@@ -47,12 +46,12 @@ public class PurchaseService implements EntityLoader<Purchase, Long> {
 
         newPurchase.setIsNft(LocalDate.now());
 
-//        NFTRequestDto.MemberNFTInfo nftInfo = new NFTRequestDto.MemberNFTInfo(receiver.getWalletAddress(), "ipfs://QmZUS5QQK4nSKLFWui54vVp4CJTEBaqfcfBJCry7vjRVCc");
-//        try {
-//            TransactionReceipt transactionReceipt = web3jService.nftCreate(nftInfo);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        NFTRequestDto.MemberNFTInfo nftInfo = new NFTRequestDto.MemberNFTInfo(receiver.getWalletAddress(), flower.getImage().getIpfsUrl());
+        try {
+            TransactionReceipt transactionReceipt = web3jService.nftCreate(nftInfo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return new PurchaseIdResponse(newPurchase.getId());
     }
 
