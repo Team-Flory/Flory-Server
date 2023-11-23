@@ -39,12 +39,6 @@ public class ImageService implements EntityLoader<Image, Long> {
         return s3ImageComponent.uploadImage("flower-image", flowerImage);
     }
 
-    @Transactional
-    public void makeNft(Long imageId, Long senderId, Long receiverId) {
-        Image image = loadEntity(imageId);
-        image.updateImage(senderId, receiverId);
-    }
-
     @Override
     public Image loadEntity(Long id) {
         Optional<Image> image = imageRepository.findImageById(id);

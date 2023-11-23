@@ -3,14 +3,14 @@ package zerobibim.flory.domain.purchase.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import zerobibim.flory.domain.purchase.dto.response.NftImageResponse;
 import zerobibim.flory.domain.purchase.dto.request.PurchaseCreateRequest;
 import zerobibim.flory.domain.purchase.dto.response.PurchaseIdResponse;
 import zerobibim.flory.domain.purchase.service.PurchaseService;
 import zerobibim.flory.global.common.ApiPayload.ApiResponse;
+
+import java.util.List;
 
 @Tag(name = "Purchase API" , description = "구매 관련 API")
 @RestController
@@ -28,5 +28,11 @@ public class PurchaseController {
     @Operation(summary = "구매하기 API")
     public ApiResponse<PurchaseIdResponse> createPurchase(@RequestBody PurchaseCreateRequest request) {
         return ApiResponse.onSuccess(purchaseService.createPurchase(request));
+    }
+
+    @GetMapping("/nft")
+    @Operation(summary = "받은 nft 이미지 조회 API")
+    public ApiResponse<List<NftImageResponse>> getNftImages(@RequestParam Long memberId) {
+        return ApiResponse.onSuccess(purchaseService.getNftImages(memberId));
     }
 }
