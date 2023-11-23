@@ -64,7 +64,9 @@ jobs:
         port: 22
         script: |
           sudo docker stop $(sudo docker ps -qa)
-          sudo docker rm -f $(sudo docker ps -qa)
+          containers=$(sudo docker ps -qa)
+          if [ -n "$containers" ]; then
+            sudo docker rm -f $containers
           sudo docker pull ${{ secrets.DOCKER_REPO }}
           docker-compose up -d
           docker image prune -f
